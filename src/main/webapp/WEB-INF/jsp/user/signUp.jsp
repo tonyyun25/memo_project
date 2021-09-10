@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,38 +19,43 @@
 </head>
 <body>
 	<div id="wrap" >
-		<c:import url="/WEB-INF/jsp/include/header.jsp" />
+		<header class="bg-secondary text-light">
+			<!-- 아래 memo 앞에 mt-3을 주면 Memo가 아닌 상단 header에 마진이 잡히는 마진 상쇄 발생  -->
+			<h1 class="ml-3 pt-1">Memo</h1>
+		
+		</header>
 		
 		
 		<section class="d-flex content justify-content-center align-items-center">
 			<div class="login-box">
 				
-				<form id="signupForm">
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<span class="input-group-text">🚺</span>
-						</div>
-						<input type="text" placeholder="Username"  name="id" id="idInput" class="form-control">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">🚺</span>
 					</div>
-					
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<span class="input-group-text">🔑</span>
-						</div>
-						<input type="password" placeholder="●●●●"  name="password"  id="passwordInput" class="form-control ">
+					<input type="text" placeholder="Username" name="idInput" class="form-control">
+				</div>
+				
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">🔑</span>
 					</div>
-					
-					<input type="text" placeholder="비밀번호 확인"  name="confirmPassword"  id="confirmPasswordInput" class="form-control mb-3">
-					<input type="text" placeholder="이름"  name="name"  id="nameInput" class="form-control mb-3">
-					<input type="text" placeholder="이메일 주소"  name="email" id="emailInput" class="form-control mb-3">
-					
-					<button class="btn btn-success form-control" id="signUpBtn">가입</button>
-				</form>
+					<input type="password" placeholder="●●●●"  name="passwordInput" class="form-control ">
+				</div>
+				
+				<input type="text" placeholder="비밀번호 확인"  name="confirmPasswordInput" class="form-control mb-3">
+				<input type="text" placeholder="이름"  name="nameInput" class="form-control mb-3">
+				<input type="text" placeholder="이메일 주소"  name="emailInput" class="form-control mb-3">
+				
+				<button class="btn btn-success form-control" id="signUpBtn">가입</button>
 			</div>
 		</section>
 		
 		
-		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
+		<footer class="bg-secondary text-light text-center">
+			Copyright 2018. memo all rights reserved.
+		
+		</footer>
 		
 	
 	</div>
