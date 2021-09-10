@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,11 +27,9 @@
 	 localhost:8080/static/css/style.css 로 접속 
 	-->
 	<div id="wrap" >
-		<header class="bg-secondary text-light">
-			<!-- 아래 memo 앞에 mt-3을 주면 Memo가 아닌 상단 header에 마진이 잡히는 마진 상쇄 발생  -->
-			<h1 class="ml-3 pt-1">Memo</h1>
 		
-		</header>
+		<c:import url="/WEB-INF/jsp/include/header.jsp" /><!-- 외부에서는 접근 X. 서버에서 처리되는
+		코드로는 접근 O -->
 		
 		<section class="content d-flex justify-content-center align-items-center">
 			<!-- 전체 div가 400인데 위에 align 주면 안 먹히고 밑에 주어야 한다 1) section 자체 높이 준 뒤
@@ -38,8 +37,8 @@
 			<div class="login-box">
 				<h2 class="text-center">로그인</h2>
 				<form>
-					<input type="text" class="form-control" placeholder="아이디를 입력하세요">
-					<input type="password" class="form-control mt-3" placeholder="비밀번호를 입력하세요">
+					<input type="text" class="form-control" placeholder="아이디를 입력하세요" name="id">
+					<input type="password" class="form-control mt-3" placeholder="비밀번호를 입력하세요" name="password">
 					<input type="submit" class="btn btn-info btn-block mt-3" value="로그인">
 					
 				</form>
@@ -50,12 +49,7 @@
 			</div>
 		</section>
 		
-		<footer class="bg-secondary text-light text-center">
-			Copyright 2018. memo all rights reserved.
-		
-		</footer>
-		
-		
+		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
 
 </body>
