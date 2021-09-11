@@ -1,3 +1,4 @@
+
 spring:
   mvc:
     static-path-pattern: /static/**
@@ -5,4 +6,9 @@ spring:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
           
-      
+  
+  datasource:    
+    url: jdbc:mysql://localhost:3306/web_memo?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver

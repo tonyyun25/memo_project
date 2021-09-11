@@ -33,7 +33,7 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text">🚺</span>
 					</div>
-					<input type="text" placeholder="Username" name="idInput" class="form-control">
+					<input type="text" placeholder="UserID" name="idInput" class="form-control">
 				</div>
 				
 				<div class="input-group mb-3">
