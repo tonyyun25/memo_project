@@ -14,7 +14,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 @SpringBootApplication
-//@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})//'21.09.11 19:00 삭제
+//@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})//1차 삭제
 @MapperScan(basePackages = "com.lytear.memo.*")
 
 public class MemoApplication {
