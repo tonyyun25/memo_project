@@ -15,23 +15,23 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 @SpringBootApplication
 //@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})//1차 삭제
-@MapperScan(basePackages = "com.lytear.memo.*")
+//@MapperScan(basePackages = "com.lytear.memo.*")
 
 public class MemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MemoApplication.class, args);
 	}
-	@Bean
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-		sessionFactory.setDataSource(dataSource);
-		
-		Resource[] res = new PathMatchingResourcePatternResolver().getResources("classpath:mappers/*Mapper.xml");
-		sessionFactory.setMapperLocations(res);
-		
-		return sessionFactory.getObject();
-	}
+//	@Bean
+//	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+//		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+//		sessionFactory.setDataSource(dataSource);
+//		
+//		Resource[] res = new PathMatchingResourcePatternResolver().getResources("classpath:mappers/*Mapper.xml");
+//		sessionFactory.setMapperLocations(res);
+//		
+//		return sessionFactory.getObject();
+//	}
 	
 	
 }

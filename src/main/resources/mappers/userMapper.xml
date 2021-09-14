@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!-- 구글링 : mybatis dtd -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 
 <mapper namespace="com.lytear.memo.user.dao.UserDAO">
-	<insert id="insertMember" parameterType="int">
+	<select id="selectUserList" resultType="com.lytear.memo.user.model.User">
+		SELECT
+			`id`
+			,`loginId`
+			,`password`
+			,`name`
+			,`email`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`user`
+	
+	
+	</select>
+	
+	<insert id="insertUserAsObject" parameterType="com.lytear.memo.user.model.User">
 		INSERT INTO `user`
 		(
 			`loginId`
@@ -24,8 +39,39 @@
 			,now()
 			,now()
 		)
+	
+	
+	
 	</insert>
+	
+	
+	
+	
+	<insert id="insertUser" parameterType="map">
+	<!-- parameterType을 int로 하면 에러가 발생한다 -->
+		INSERT INTO `user`
+		(
+			`loginId`
+			,`password`
+			,`name`
+			,`email`
+			,`createdAt`
+			,`updatedAt`
+		)
+		VALUES
+		(
+			<!-- dao 에서 전달된 파람 이름으로 값을 지정 -->
+			#{loginId}
+			,#{password}
+			,#{name}
+			,#{email}
+			,now()
+			,now()
+		)
+	</insert>
+	
 
+	
 
 
 </mapper>
