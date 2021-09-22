@@ -1,15 +1,14 @@
 package com.lytear.memo.user;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lytear.memo.user.bo.UserBO;
@@ -33,7 +32,7 @@ public class UserController {
 	public String signupView() {
 		return "user/signUp";
 	}
-	
+	// 개인 연습
 	@RequestMapping("/ex01")
 	@ResponseBody
 	public List<User> ex01() {
@@ -54,10 +53,20 @@ public class UserController {
 		
 		return "입력 결과 : " + count;
 	}
-	
-	
-	
-	
+	// 여기까지 개인 연습
+	@GetMapping("/sign_out")
+	public String signOut(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		
+		session.removeAttribute("loginId");
+		session.removeAttribute("userName");
+		
+		
+		return "redirect:/user/signin_view";
+	}
+	// https://chrome.google.com/webstore/detail/zenhub-for-github/ogcgkffhplmphkaahpmffcafajaocjbd?ctx=deblog20052011&hl=ko
+	// 구글링 마크다운
 	
 	
 	

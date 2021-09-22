@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,20 +27,22 @@
 	 localhost:8080/static/css/style.css 로 접속 
 	-->
 	<div id="wrap" >
+		<c:import url="/WEB-INF/jsp/include/header.jsp" />
+		
+		<!--  
 		<header class="bg-secondary text-light">
-			<!-- 아래 memo 앞에 mt-3을 주면 Memo가 아닌 상단 header에 마진이 잡히는 마진 상쇄 발생  -->
+			아래 memo 앞에 mt-3을 주면 Memo가 아닌 상단 header에 마진이 잡히는 마진 상쇄 발생
 			<h1 class="ml-3 pt-1">Memo</h1>
-		
 		</header>
-		
+		-->
 		<section class="content d-flex justify-content-center align-items-center">
 			<!-- 전체 div가 400인데 위에 align 주면 안 먹히고 밑에 주어야 한다 1) section 자체 높이 준 뒤
 			loginbox 높이 없이 여기에 가운데 정렬 -->
 			<div class="login-box">
 				<h2 class="text-center">로그인</h2>
-				<form>
-					<input type="text" class="form-control" placeholder="아이디를 입력하세요">
-					<input type="password" class="form-control mt-3" placeholder="비밀번호를 입력하세요">
+				<form id="loginForm">
+					<input type="text" class="form-control" placeholder="아이디를 입력하세요" name="loginId" id="idInput">
+					<input type="password" class="form-control mt-3" placeholder="비밀번호를 입력하세요" name="password" id="passwordInput">
 					<input type="submit" class="btn btn-info btn-block mt-3" value="로그인">
 					
 				</form>
@@ -57,6 +60,55 @@
 		
 		
 	</div>
+	
+	<script>
+	$(document).ready(function(){
+		$("#loginForm").on("submit", function(e){
+			
+			e.preventDefault();
+			
+			var id = $("#idInput").val().trim();
+			var password = $("#passwordInput").val().trim();
+			
+			if(id == null || id == "") {
+				alert("id를 입력하세요");
+				return;
+			}
+			
+			if(password == null || password == "") {
+				alert("비밀번호를 입력하세요");
+				return;
+			}
+			
+			$.ajax({
+				//alert("문제");
+				type:"post",
+				url: "/user/sign_in",
+				data: {"loginId":id, "password":password},
+				success:function(data) {
+				//alert(data);
+				
+					if(data.result == "success"){
+						//alert("로그인 성공");
+						location.href="/post/list_view";
+					} else {
+						alert("ID 비밀번호를 확인해 주세요");
+					}
+				
+				},
+				error:function(e) {
+					alert("error");
+				}
+					
+			});
+			
+		});
+	});	
+		
+	
+	</script>
+	
+	
 
 </body>
 </html>

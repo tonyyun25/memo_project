@@ -40,6 +40,12 @@ public class UserBO {
 		
 		return userDAO.insertUser(loginId, encryptPassword, name, email);
 	}
+	// 일치하는 사용자 정보 select 결과 다 들고 옴 => model 만들어야 함
+	public User getUser(String loginId, String password) {
+		// 암호화되어 있는 아이디라 아래처럼 암호화해 저장해야 함
+		String encryptPassword = EncryptUtils.md5(password);
+		return userDAO.selectUserByLoginIdPassword(loginId, encryptPassword);//컨트롤러에 리턴
+	}
 	
 	
 	
