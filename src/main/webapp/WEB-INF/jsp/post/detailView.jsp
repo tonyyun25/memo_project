@@ -37,8 +37,11 @@
 				<div class="d-flex justify-content-between my-3">
 					<!--  
 					<button type="button" class="btn btn-info">목록으로</button>-->
+				<div><%--양쪽으로 붙이려고 아래 두 개 div로 묶음 --%>
 					<a href="/post/list_view" class="btn btn-info">목록으로</a>
-					<button type="button" class="btn btn-success" id="updateBtn">수정</button>
+					<button type="button" class="btn btn-danger" id="deleteBtn" data-post-id="${memo.id }">삭제</button>
+				</div>
+					<button type="button" class="btn btn-success" id="updateBtn" data-post-id="${memo.id }">수정</button>
 				</div>
 			</div>	
 			
@@ -46,6 +49,57 @@
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>	
+	
+	<script>
+	$(document).ready(function(){
+		$("#deleteBtn").on("click", function(){
+			var postId = $(this).data("post-id");
+			
+			$.ajax({
+				type:"get",
+				url:"/post/delete",
+				data:{"postId":postId},
+				success:function(data){
+					if(data.result == "success") {
+						location.href="/post/list_view";
+					} else {
+						alert("삭제실패");
+					}
+				},
+				error:function(e){
+					alert("error");	
+				}
+				
+			});
+		});
+		
+		
+		$("#updateBtn").on("click", function(){
+			var postId = $(this).data("post-id");
+			
+			$.ajax({
+				type:"get",
+				url:"/post/update",
+				data:{"postId":postId,"subject":$("#titleInput").val(),"content":$("#contentInput").val()},//validation 없이 바로 값 가져옴
+				success:function(data){
+					if(data.result == "success") {
+						alert("수정 성공");//그 상태 그 대로 update 되므로 refresh 없이 alert만
+					} else {
+						alert("삭제실패");
+					}
+				},
+				error:function(e){
+					alert("error");	
+				}
+				
+			});
+		});
+	});
+	
+	
+	</script>
+	
+	
 <body>
 
 </body>

@@ -24,4 +24,16 @@ public interface PostDAO {
 			,@Param("userId") int userId 
 			
 			);
+	
+	public int deleteMemo(@Param("id") int id
+			,@Param("userId") int userId 
+			);
+	// 쿼리를 날리는 dao 입장에서는 postId 보다는 그냥 자체 id 이름을 잡았음
+	
+	public int updateMemo(@Param("id") int id
+			,@Param("subject") String subject 
+			,@Param("content") String content 
+			,@Param("userId") int userId 
+			);
+	
 }

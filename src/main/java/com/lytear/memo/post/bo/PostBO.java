@@ -60,5 +60,29 @@ public class PostBO {
 	}
 	public Post getMemo(int id, int userId) {// id 를 기반으로 딱 하나만 값을 가져오므로 리턴 타입은 리스트 아닌 Post
 		return postDAO.selectMemo(id, userId);
-	}	
+	}
+	
+	//public int deleteMemo(int postId) {
+		// 아래 리턴에서 파일 삭제하기 전체 메소드 만든 대로 경로부터 삭제
+		//FileManagerService.removeFile(null);//아래 괄호에 null로 나오므로 데이터 조회해서 가져와야 함. userId 받아와 post에 있는 imagePath 꺼내기
+	public int deleteMemo(int id, int userId) { // id라도 적었지만 처리하는 부분상 당연히 postId임
+		Post post = this.getMemo(id, userId);
+		
+		
+		if(post.getImagePath() != null) {//FilePath가 null 일 때는 호출하지 않는다
+			FileManagerService.removeFile(post.getImagePath());		
+		}
+		
+		return postDAO.deleteMemo(id, userId);
+		// FileManagerService 통해 파일 삭제하기
+		
+		// 이 글의 id를 알고 있는 사람이 임의로 삭제하면 안 됨 => userId 포함해서 삭제(글쓴사람만 삭제): dao에 userId 추가
+	}
+	
+	public int updateMemo(int id, String subject, String content, int userId) {//아무나 수정하면 안 되니 userId도 추가
+		return postDAO.updateMemo(id, subject, content, userId);
+	}
+	
+	
+	
 }

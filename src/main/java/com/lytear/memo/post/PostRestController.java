@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,12 +52,53 @@ public class PostRestController {
 	/*
 	 * 1. 파일이 저장되는 경로
 	 * 2. 파일 접근하는 경로 = Http 주소창에 적힘
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
 	 * */
+	@GetMapping("/delete")
+	public Map<String, String> delete(@RequestParam("postId") int postId
+			,HttpServletRequest request
+			){
+		
+		HttpSession session = request.getSession();
+		int userId= (Integer)session.getAttribute("userId");
+		
+		
+		Map<String, String> result = new HashMap<>();
+		int count = postBO.deleteMemo(postId, userId);
+		
+		if(count == 0) {
+			result.put("result","fail");
+		} else {
+			result.put("result","success");
+		}
+		return result;
+		
+	}
+	
+	/*이미지파일은 DB에 저장되어 있지 않고 경로만 저장되어 있으므로 그냥
+	 * 처리 안 하면 좀비처럼 떠 다니므로 지워야 한다
+	 * */
+	@PostMapping("update")
+	public Map<String, String> update(@RequestParam("postId") int postId
+			,@RequestParam("subject") String subject
+			,@RequestParam("content") String content
+			,HttpServletRequest request
+			
+			){
+		HttpSession session = request.getSession();
+		int userId= (Integer)session.getAttribute("userId");
+		
+		
+		Map<String, String> result = new HashMap<>();
+		int count = postBO.updateMemo(postId, subject, content, userId);
+		
+		if(count == 0) {
+			result.put("result","fail");
+		} else {
+			result.put("result","success");
+		}
+		return result;
+		
+	}
 	
 	
 }
