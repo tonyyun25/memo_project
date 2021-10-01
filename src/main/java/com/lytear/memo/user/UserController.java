@@ -58,8 +58,11 @@ public class UserController {
 	public String signOut(HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
+		session.removeAttribute("userId");// '21.10.01 permission 부분 오류 확인해 보니 이 행이 없었으므로 추가함
 		
-		session.removeAttribute("loginId");
+//		session.removeAttribute("loginId");
+		session.removeAttribute("userLoginId");
+		
 		session.removeAttribute("userName");
 		
 		
